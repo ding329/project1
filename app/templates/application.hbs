@@ -1,12 +1,24 @@
 <!-- app/templates/application.hbs -->
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">My App</a>
+		</div>
+		<div class="navbar-right search-field">
+			{{#bs-form formLayout="inline" action="search"}}
+				<label class="control-label">Search By Name:</label>
+				{{bs-input type="text" value=searchField}}
+			{{/bs-form}}
+		</div>
+	</div>
+</nav>
 <div class="container">
-	<h2 id="title">Flickr feed;</h2>
-	<ul class="lists-group">
-		{{#each photo in photos}}
-			<li class="list-group-item">
-				{{photo.title}} ({{photo.username}})<br>
-				<img class="feed-img" src={{photo.url}} />
-			</li>
-		{{/each}}
+	<ul class="list-group">
+	{{#each photo in filteredPhotos}}
+		<li class="list-group-item">
+			{{photo.title}} ({{photo.username}})<br>
+			<img class="feed-img" src={{photo.url}} />
+		</li>
+	{{/each}}
 	</ul>
 </div>

@@ -44,5 +44,19 @@ testPhotos.pushObject(testimg3);
 testPhotos.pushObject(testimg4);
 
 export default Ember.Controller.extend({
-	photos: testPhotos
+	photos: testPhotos,
+	searchField: '',
+	filteredPhotos: testPhotos,
+	actions: {
+		search: function () {
+			var filter = this.get('searchField');
+			var rx = new RegExp(filter, 'gi');
+			var photos = this.get('photos');
+			this.set('filteredPhotos',
+				photos.filter(function(photo){
+					return photo.get('title').match(rx) || photo.get('username').match(rx);
+				})
+			);
+		}
+	}
 });

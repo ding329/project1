@@ -1,3 +1,8 @@
 .feed-img{
 		max-width: 100%
 }
+body {padding-top: 70px;}
+.search-filed{
+	padding-top: 8px;
+	padding-right: 10px;
+}
