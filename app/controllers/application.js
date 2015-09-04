@@ -8,7 +8,7 @@ var Photo = Ember.Object.extend({
 
 var PhotoCollection = Ember.ArrayProxy.extend(Ember.SortableMixin, {
 	sortProperties: ['title'],
-	sortAscending: false,
+	sortAscending: true,
 	content: [],
 });
 
