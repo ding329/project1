@@ -31,9 +31,17 @@ var testimg3 = Photo.create({
 	url: "https://www.facebook.com/images/fb_icon_325x325.png"
 });
 
+var testimg4 = Photo.create({
+	title: "Hubble Carina Nebula",
+	username: "NASA",
+	url: "http://imgsrc.hubblesite.org/hu/db/images/hs-2010-13-a-1920x1200_wallpaper.jpg"
+});
+
+
 testPhotos.pushObject(testimg1);
 testPhotos.pushObject(testimg2);
 testPhotos.pushObject(testimg3);
+testPhotos.pushObject(testimg4);
 
 export default Ember.Controller.extend({
 	photos: testPhotos
