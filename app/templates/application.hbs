@@ -6,19 +6,21 @@
 		</div>
 		<div class="navbar-right search-field">
 			{{#bs-form formLayout="inline" action="search"}}
-				<label class="control-label">Search By Name:</label>
-				{{bs-input type="text" value=searchField}}
+				{{bs-input type="text" value=searchField placeholder="search something"}}
+				<button type="submit" class="btn btn-default">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				</button>
 			{{/bs-form}}
 		</div>
 	</div>
 </nav>
 <div class="container">
 	<ul class="list-group">
-	{{#each photo in filteredPhotos}}
+	  {{#each photo in filteredPhotos}}
 		<li class="list-group-item">
 			{{photo.title}} ({{photo.username}})<br>
 			<img class="feed-img" src={{photo.url}} />
 		</li>
-	{{/each}}
+	  {{/each}}
 	</ul>
 </div>
