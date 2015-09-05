@@ -6,22 +6,34 @@
 		</div>
 		<div class="navbar-right search-field">
 			{{#bs-form formLayout="inline" action="search"}}
-				{{#bs-button type="primary" icon="glyphicon glyphicon-download" action="getPhotos"}} {{/bs-button}};
-				{{bs-input type="text" value=searchField placeholder="search something"}}
+				{{#if filteredPhotos}}
+					{{bs-input type="text" value=searchField placeholder="filter photos"}}
+				{{/if}}
+				{{bs-input type="text" value=tagSearchField action="search" placeholder="search for a flickr tag"}}
 				<button type="submit" class="btn btn-default">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 				</button>
 			{{/bs-form}}
 		</div>
 	</div>
 </nav>
+
 <div class="container">
-	<ul class="list-group">
-	  {{#each photo in filteredPhotos}}
-		<li class="list-group-item">
-			{{photo.title}} ({{photo.username}})<br>
-			<img class="feed-img" src={{photo.url}} />
-		</li>
-	  {{/each}}
-	</ul>
+
+	{{#if filteredPhotos}}
+		<ul class="list-group">
+			{{#each photo in filteredPhotos}}
+			<li class="list-group-item">
+				{{photo.title}} ({{photo.username}})<br>
+				<img class="feed-img" src={{photo.url}} />
+			</li>
+			{{/each}}
+		</ul>
+	{{else}}
+		<div class="jumbotron">
+			<h1>[app-name]</h1>
+			<p>Created by [yourname]</p>
+			<p>Search for a flickr tag to load the most recent images</p>
+		</div>
+	{{/if}}
 </div>
