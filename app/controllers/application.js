@@ -1,21 +1,5 @@
 import Ember from 'ember';
 
-/*var Photo = Ember.Object.extend({
-	title: '',
-	username: '',
-//flicker data
-	owner: '',
-	id: '', 
-	farm: 0,
-	secret: '',
-	server: '',
-	url: function(){
-		return "https://farm"+this.get('farm')+
-		".staticflickr.com/"+this.get('server')+
-		"/"+this.get('id')+"_"+this.get('secret')+"_b.jpg";
-	}.property('farm','server','id','secret'),
-});  */
-
 var PhotoCollection = Ember.ArrayProxy.extend(Ember.SortableMixin, {
 	sortProperties: ['dates.taken'],
 	sortAscending: false,
@@ -27,6 +11,7 @@ export default Ember.Controller.extend(
 	photos: PhotoCollection.create(),
 	searchField: '',
 	tagSearchField: '',
+	filteredPhotosLoaded: false,
 	tagList: ['hi', 'cheese'],
 	
 	filteredPhotos: function()
@@ -44,9 +29,13 @@ export default Ember.Controller.extend(
 	{
 		search: function ()
 		{
+/*			this.get('photos').content.clear();
+			this.store.unloadAll('photo');
+			this.send('getPhotos', this.get('tagSearchField'));  */
+			this.set('loading', true);
 			this.get('photos').content.clear();
 			this.store.unloadAll('photo');
-			this.send('getPhotos', this.get('tagSearchField'));
+			this.send('getPhotos',this.get('tagSearchField'));
 		},
 		getPhotos: function(tag)
 		{
@@ -91,6 +80,8 @@ export default Ember.Controller.extend(
 		clicktag: function (tag)
 		{
 			this.set('tagSearchField', tag);
+			this.set('loading', false)
+			this.set('filteredPhotosLoaded',false)
 			this.get('photos').content.clear();
 			this.store.unloadAll('photo');
 			this.send('getPhotos',tag);
