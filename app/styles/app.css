@@ -6,3 +6,8 @@ body {padding-top: 70px;}
 	padding-top: 8px;
 	padding-right: 10px;
 }
+
+.tag-button {
+	padding:4px;
+	margin: 1px;
+}

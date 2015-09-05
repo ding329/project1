@@ -31,9 +31,12 @@
 		</ul>
 	{{else}}
 		<div class="jumbotron">
-			<h1>[app-name]</h1>
-			<p>Created by [yourname]</p>
-			<p>Search for a flickr tag to load the most recent images</p>
+			<h1>The overly impressive Assignment #1</h1>
+			<p>Created by Bryan Wilwerding</p>
+			<p>Click one of the popular flickr tags below or search one above:</p>
+			{{#each tag in tagList}}
+				<button class="btn btn-info tag-button" {{action "clicktag" tag}}>{{tag}}</button>
+			{{/each}}
 		</div>
 	{{/if}}
 </div>
