@@ -24,8 +24,28 @@
 		<ul class="list-group">
 			{{#each photo in filteredPhotos}}
 			<li class="list-group-item">
-				{{photo.title}} ({{photo.username}})<br>
-				<img class="feed-img" src={{photo.url}} />
+				<div class="media">
+					<div class="media-left media-middle">
+						<a href="{{photo.link}}" target="_blank">
+							<img class="media-object" src={{photo.url}} />
+						</a>
+						Taken: {{photo.humanReadableDate}}<br>
+						By: <a href={{photo.ownerurl}} target="_blank">{{photo.owner.username}}</a><br>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">{{photo.title}} ({{photo.views}} Views)</h4>
+						{{{photo.description}}}
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-1 col-xs-1 col-sm-1">Tags:</div>
+					<div class="col-md-11 col-xs-11 col-sm-11">
+						{{#each tag in photo.tags}}
+							<button class="btn btn-info btn-xs post-tag-button" {{action "clicktag" tag}}>#{{tag}}</button> 
+						{{/each}}
+					</div>
+				</div>
 			</li>
 			{{/each}}
 		</ul>
