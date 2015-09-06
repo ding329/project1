@@ -26,10 +26,9 @@
 			<li class="list-group-item">
 				<div class="media">
 					<div class="media-left media-middle">
-						<a href="{{photo.link}}" target="_blank">
-							<img class="media-object feed-img" src={{photo.url}} />
-						</a>
-						Taken: {{photo.humanReadableDate}}<br>
+						{{light-box href=photo.url data-lightbox=photo.id data-title=photo.title
+						data-class="media-object feed-img"}}
+						Taken: <a href={{photo.link}}>{{photo.humanReadableDate}}<br></a>
 						By: <a href={{photo.ownerurl}} target="_blank">{{photo.owner.username}}</a><br>
 					</div>
 					<div class="media-body">
