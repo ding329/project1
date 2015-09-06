@@ -27,6 +27,10 @@ export default Ember.Controller.extend(
 	photos: PhotoCollection.create(),
 	searchField: '',
 	tagSearchField: '',
+//	filteredPhotosLoaded: false,
+	filteredPhotosLoaded: function() {
+		return this.get('filteredPhotos').length >0
+	}.property('filteredPhotos.length'),
 	tagList: ['hi', 'cheese'],
 	
 	filteredPhotos: function()
@@ -44,9 +48,13 @@ export default Ember.Controller.extend(
 	{
 		search: function ()
 		{
+/*			this.get('photos').content.clear();
+			this.store.unloadAll('photo');
+			this.send('getPhotos', this.get('tagSearchField')); */
+			this.set('loading', true);
 			this.get('photos').content.clear();
 			this.store.unloadAll('photo');
-			this.send('getPhotos', this.get('tagSearchField'));
+			this.send('getPhotos',this.get('tagSearchField'));
 		},
 		getPhotos: function(tag)
 		{
@@ -90,7 +98,20 @@ export default Ember.Controller.extend(
 		},
 		clicktag: function (tag)
 		{
+		/*	this.set('tagSearchField', tag);
+			this.get('photos').content.clear();
+			this.store.unloadAll('photo');
+			this.send('getPhotos',tag);
+		*/
+		/*	this.set('tagSearchField', tag);
+			this.set('loading', true);
+			this.get('photos').content.clear();
+			this.store.unloadAll('photo');
+			this.send('getPhotos',tag);	
+		*/
 			this.set('tagSearchField', tag);
+			this.set('loading', true);
+		//	this.set('filteredPhotosLoaded',false);
 			this.get('photos').content.clear();
 			this.store.unloadAll('photo');
 			this.send('getPhotos',tag);

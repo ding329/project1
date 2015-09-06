@@ -20,14 +20,14 @@
 
 <div class="container">
 
-	{{#if filteredPhotos}}
+	{{#liquid-if filteredPhotosLoaded use= "toDown"}}
 		<ul class="list-group">
 			{{#each photo in filteredPhotos}}
 			<li class="list-group-item">
 				<div class="media">
 					<div class="media-left media-middle">
 						<a href="{{photo.link}}" target="_blank">
-							<img class="media-object" src={{photo.url}} />
+							<img class="media-object feed-img" src={{photo.url}} />
 						</a>
 						Taken: {{photo.humanReadableDate}}<br>
 						By: <a href={{photo.ownerurl}} target="_blank">{{photo.owner.username}}</a><br>
@@ -50,13 +50,17 @@
 			{{/each}}
 		</ul>
 	{{else}}
-		<div class="jumbotron">
-			<h1>The overly impressive Assignment #1</h1>
-			<p>Created by Bryan Wilwerding</p>
-			<p>Click one of the popular flickr tags below or search one above:</p>
-			{{#each tag in tagList}}
-				<button class="btn btn-info tag-button" {{action "clicktag" tag}}>{{tag}}</button>
-			{{/each}}
-		</div>
-	{{/if}}
+		{{#liquid-if loading}}
+			<img src="../page-loading.gif" class="img-responsive center-block"/>
+		{{else}}
+			<div class="jumbotron">
+				<h1>The overly impressive Assignment #1</h1>
+				<p>Created by Bryan Wilwerding</p>
+				<p>Click one of the popular flickr tags below or search one above:</p>
+				{{#each tag in tagList}}
+					<button class="btn btn-info btn-small tag-button" {{action "clicktag" tag}}>#{{tag}}</button>
+				{{/each}}
+			</div>
+		{{/liquid-if}}
+	{{/liquid-if}}
 </div>
