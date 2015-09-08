@@ -29,7 +29,7 @@ export default Ember.Controller.extend(
 	tagSearchField: '',
 //	filteredPhotosLoaded: false,
 	filteredPhotosLoaded: function() {
-		return this.get('filteredPhotos').length >0
+		return this.get('filteredPhotos').length >0;
 	}.property('filteredPhotos.length'),
 	tagList: ['hi', 'cheese'],
 	
@@ -76,6 +76,20 @@ export default Ember.Controller.extend(
 						{
 							return tagitem._content;
 						});
+	/*					
+						var country =photo.location.country.map(function(countryitem)
+						{
+							return countryitem._content;
+						});
+						var region = photo.location.region.map(function(regionitem)
+						{
+							return regionitem._content;
+						});
+						var locality = photo.location.locality.map(function(localityitem)
+						{
+							return localityitem._content;
+						});
+	*/					
 						var newPhotoItem = t.store.createRecord('photo',
 						{
 							title: photo.title._content,
@@ -90,6 +104,10 @@ export default Ember.Controller.extend(
 							farm: photo.farm,
 							secret: photo.secret,
 							server: photo.server,
+							//added geolocation
+							country: photo.location.country._content,
+							region: photo.location.region._content,
+							locality: photo.location.locality._content,
 						});
 						photos.pushObject(newPhotoItem);
 					});

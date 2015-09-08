@@ -13,6 +13,10 @@ export default DS.Model.extend({
 	farm: DS.attr('number'),
 	secret: DS.attr('string'),
 	server: DS.attr('string'),
+//extra stuff
+	country: DS.attr('string'),
+	region: DS.attr('string'),
+	locality: DS.attr('string'),
 	url: function(){
 		return "https://farm"+this.get('farm')+
 		".staticflickr.com/"+this.get('server')+
